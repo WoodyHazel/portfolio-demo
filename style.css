@@ -310,4 +310,11 @@ section.settings .section-img {
   transform: scale(0);
 }
 
+/* .page-loader {
+  display: none;
+} */
+
 /* Media Queries */
+
+/* @media screen and (max-width: 600px) {
+} */
