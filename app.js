@@ -3,6 +3,18 @@
 // window.addEventListener("load", (event) => {
 //   pageReset();
 // });
+// Page Loader
+const pageLoader = document.querySelector(".page-loader");
+
+function loaderTimer() {
+  setTimeout(() => {
+    pageLoader.style.opacity = 0;
+    setTimeout(() => {
+      pageLoader.style.display = "none";
+    }, 2000);
+  }, 500);
+}
+window.addEventListener("scroll", loaderTimer);
 
 // Header
 const menuBtn = document.querySelector(".menu-btn");
