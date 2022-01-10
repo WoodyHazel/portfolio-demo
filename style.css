@@ -17,11 +17,28 @@ li {
 /* Body */
 body {
   width: 100vw;
-  overflow: hidden;
-  position: relative;
+  height: 110vh;
   background: url(https://images.pexels.com/photos/3114462/pexels-photo-3114462.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260)
-    center/contain repeat;
+    center/contain repeat fixed;
   font-family: "Zen Kurenaido", sans-serif;
+  z-index: 1;
+}
+
+.page-loader {
+  width: 100%;
+  height: 120vh;
+  background-color: cadetblue;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hide-page-loader {
+  display: none;
 }
 
 /* Header */
@@ -60,8 +77,8 @@ body {
 
 /* Main Nav */
 nav.main-nav {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 8vh;
   left: 0;
   z-index: 9;
   width: 100vw;
@@ -92,9 +109,12 @@ main {
   width: 100%;
   height: 72vh;
   margin-top: 8vh;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column-reverse;
+  z-index: 3;
 }
 .page {
   width: 100%;
@@ -161,7 +181,7 @@ main {
   height: 92vh;
   overflow-y: scroll;
   transition: transform 1s ease-in-out;
-  z-index: 9;
+  z-index: 999;
 }
 .close-section-btn {
   font-size: 3rem;
@@ -241,9 +261,12 @@ section.settings .section-img {
   width: 100%;
   height: 20vh;
   display: flex;
+  position: fixed;
+  bottom: 0;
   flex-direction: column;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  z-index: 2;
 }
 .footer-nav {
   height: 80%;
@@ -317,4 +340,8 @@ section.settings .section-img {
 /* Media Queries */
 
 /* @media screen and (max-width: 600px) {
+  body {
+    height: 120vh;
+    overflow-y: scroll;
+  }
 } */
