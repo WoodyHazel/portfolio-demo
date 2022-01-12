@@ -19,7 +19,10 @@
     <h1>Hello<br><span>&</span><br>Welcome!</h1>
     <h2>I'm Woody.</h2> 
     <p>Web Designer and Developer</p>
-    <p><i class="fas fa-chevron-down"></i>scroll down to continue<i class="fas fa-chevron-down"></i></p>
+    <div>
+      <p>scroll down to continue</p>
+      <i class="fas fa-chevron-down"></i>
+    </div>
   </div> 
 <!-- Header -->
   <header class="main-header">
@@ -52,26 +55,24 @@
                       <h2>About</h2>
                   </header>
                   <section class="about-me">
-                      <h3>About Me</h3>
                       <div class="personal">
-                          <img src="media/27194EBB-9906-4F96-AFD1-2E8A821B5092_1_201_a.jpeg" alt="photo of Woody">
+                          <img src="media/imgs/27194EBB-9906-4F96-AFD1-2E8A821B5092_1_201_a.jpeg" alt="photo of Woody">
                           <p><span>Hi, </span>my name is Woody Hazel. I am a web developer and designer.</p> 
                           <p>I live in Charlottesville, VA with my fianc&eacute;e, Hannah, and our dog, Lenny.</p>
-                          <p>I am an adventure seeker. I love to travel, eat different foods, learn new things and meet new people. I think experience is the best teacher, and I love to learn.</p>
-                          <img src="media/56E1F11A-2755-4B18-BCF3-A007ADDB9AD0_1_105_c.jpeg" alt="family photo">
+                          <p>I am an adventure seeker. I love to travel, eat different foods, learn new things and meet new people. I think experience is the best teacher and I love to learn.</p>
+                          <img src="media/imgs/56E1F11A-2755-4B18-BCF3-A007ADDB9AD0_1_105_c.jpeg" alt="family photo">
                           <p>This is my little family.</p>
                       </div>
                       <div class="professional">
                           <h4>My Work</h4>
                           <div>
                               <p>I am a web developer. I am a web designer as well since the two go hand in hand, however I am a web developer first. That's because I love coding. I love learning new things and improving on the things I know.</p>
-                              <hr>
                               <p>I am a "self-taught" web developer. I learned to code through various online platforms such as Udemy, FreeCodeCamp, and Youtube.</p>
                           </div>
                       </div>
                   </section>
                   <section class="about-website">
-                      <h3>About Website</h3>
+                      <h3>About the Website</h3>
                       <div>
                           <p>This is MY website.</p>
                           <p>It is a space for me to showcase my skills as a web developer and designer. </p>
@@ -101,6 +102,8 @@
                   <i class="fas fa-times close-section-btn"></i>
                   <header class="contact-header">
                       <h2>Contact</h2>
+                      <p>Fill out the form below to get in touch.</p>
+                      <p>All fields are required.</p>
                   </header>
                   <form class="contact-form" action="">
                       <div class="input-container">
@@ -117,7 +120,7 @@
                       </div>
                       <div class="input-container">
                         <label for="message">Message:</label>
-                        <textarea name="message" id="message" cols="50" rows="10"></textarea>
+                        <textarea name="message" id="message"></textarea>
                       </div>
                       <button class="contact-form-submit">Submit</button>
                   </form>
@@ -153,6 +156,9 @@
                   <i class="fas fa-times close-section-btn"></i>
                   <header class="skills-header">
                       <h2>Skills</h2>
+                  </header>
+                  <section class="soft-skills">
+                      <h3>Soft Skills</h3>
                       <p>Things that come naturally to me in everything that I do.</p>
                       <ul>
                           <li>Organization</li>
@@ -161,9 +167,6 @@
                           <li>nit-picky</li>
                           <li>thorough</li>
                       </ul>
-                  </header>
-                  <section class="soft-skills">
-                      <h3>Soft Skills</h3>
                   </section>
                   <section class="hard-skills">
                       <h3>Hard Skills</h3>
@@ -191,41 +194,63 @@
           <section class="photos">
               <div class="section-img"></div>
               <h4 class="section-title">Photos</h4>
-              <div class="section-container section-settings hidden">
-                  <button class="close-section-btn">x</button>
-                  <h2>Photos</h2>
+              <div class="section-container section-photos hidden">
+                <i class="fas fa-times close-section-btn"></i>
+                <header class="photos-header">
+                    <h2>Photos</h2>
+                </header>
               </div>
           </section>
           <section class="music">
               <div class="section-img"></div>
               <h4 class="section-title">Music</h4>
-              <div class="section-container section-settings hidden">
-                  <button class="close-section-btn">x</button>
-                  <h2>Music</h2>
+              <div class="section-container section-music hidden">
+                <i class="fas fa-times close-section-btn"></i>
+                <header class="music-header">
+                    <h2>Music</h2>
+                </header>
               </div>
           </section>
           <section class="github">
               <div class="section-img"><i class="fab fa-github"></i></div>
               <h4 class="section-title">Github</h4>
-              <div class="section-container section-settings hidden">
-                  <button class="close-section-btn">x</button>
-                  <h2>Settings</h2>
+              <div class="section-container section-github hidden">
+                <i class="fas fa-times close-section-btn"></i>
+                <header class="github-header">
+                    <h2>Github</h2>
+                </header>
               </div>
           </section>
           <section class="settings">
               <div class="section-img"></div>
               <h4 class="section-title">Settings</h4>
               <div class="section-container section-settings hidden">
-                  <button class="close-section-btn">x</button>
-                  <h2>Settings</h2>
+                <i class="fas fa-times close-section-btn"></i>
+                <header class="settings-header">
+                    <h2>Settings</h2>
+                </header>
               </div>
           </section>
       </article>
 
   <!-- Widgets Page -->
       <article class="widgets-page slide-left page">
-          <section>
-              <p>Widget</p>
+          <section class="weather-widget">
+              <h2>Weather</h2>
+              <div class="search">
+                <input type="text" class="weather-search" placeholder="Search">
+                <button><i class="fas fa-search"></i></button>
+              </div>
+              <div class="weather">
+                <h2 class="city"></h2>
+                <div class="temp"></div>
+                <div class="weather-info">
+                  <img class="weather-icon" src="" alt="weather icon">
+                  <div class="weather-description"></div>
+                </div>
+                <div class="humidity"></div>
+                <div class="wind"></div>
+              </div>
           </section>
           <section>
               <p>Widget</p>

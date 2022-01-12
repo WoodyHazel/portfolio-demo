@@ -1,8 +1,3 @@
-// loader
-
-// window.addEventListener("load", (event) => {
-//   pageReset();
-// });
 // Page Loader
 const pageLoader = document.querySelector(".page-loader");
 
@@ -55,13 +50,13 @@ mainNavLinks.forEach((item) => {
         skillsSection.classList.toggle("hidden");
         break;
       case "Photos":
-        expandedPhotos.classList.toggle("hidden");
+        photosSection.classList.toggle("hidden");
         break;
       case "Music":
-        expandedMusic.classList.toggle("hidden");
+        musicSection.classList.toggle("hidden");
         break;
       case "Settings":
-        expandedSettings.classList.toggle("hidden");
+        settingsSection.classList.toggle("hidden");
         break;
     }
   });
@@ -80,23 +75,34 @@ const defaultPageSections = document.querySelectorAll(
   ".default-page .section-img"
 );
 const aboutSection = document.querySelector(".section-about");
-const projectsSection = document.querySelector(".section-projects");
 const contactSection = document.querySelector(".section-contact");
+const projectsSection = document.querySelector(".section-projects");
 const skillsSection = document.querySelector(".section-skills");
+const photosSection = document.querySelector(".section-photos");
+const musicSection = document.querySelector(".section-music");
+const githubSection = document.querySelector(".section-github");
 const settingsSection = document.querySelector(".section-settings");
 
 defaultPageSections.forEach((item) => {
   item.addEventListener("click", (e) => {
     if (e.target.parentElement.classList.contains("about")) {
-      aboutSection.classList.remove("hidden");
-    } else if (e.target.parentElement.classList.contains("projects")) {
-      projectsSection.classList.remove("hidden");
+      aboutSection.classList.toggle("hidden");
     } else if (e.target.parentElement.classList.contains("contact")) {
-      contactSection.classList.remove("hidden");
+      contactSection.classList.toggle("hidden");
+    } else if (e.target.parentElement.classList.contains("projects")) {
+      projectsSection.classList.toggle("hidden");
     } else if (e.target.parentElement.classList.contains("skills")) {
-      skillsSection.classList.remove("hidden");
+      skillsSection.classList.toggle("hidden");
+    } else if (e.target.parentElement.classList.contains("photos")) {
+      photosSection.classList.toggle("hidden");
+    } else if (e.target.parentElement.classList.contains("music")) {
+      musicSection.classList.toggle("hidden");
+    } else if (
+      e.target.parentElement.parentElement.classList.contains("github")
+    ) {
+      githubSection.classList.toggle("hidden");
     } else if (e.target.parentElement.classList.contains("settings")) {
-      settingsSection.classList.remove("hidden");
+      settingsSection.classList.toggle("hidden");
     }
   });
 });
@@ -192,7 +198,6 @@ projectsFooterBtn.addEventListener("click", () => {
     currentPage = defaultPageBtn;
   }
   projectsSection.classList.toggle("hidden");
-  header.classList.add("header-black");
 });
 
 const aboutFooterBtn = document.querySelector(".footer-about");
@@ -204,7 +209,6 @@ aboutFooterBtn.addEventListener("click", () => {
     currentPage = defaultPageBtn;
   }
   aboutSection.classList.toggle("hidden");
-  header.classList.add("header-black");
 });
 
 const contactFooterBtn = document.querySelector(".footer-contact");
@@ -216,5 +220,46 @@ contactFooterBtn.addEventListener("click", () => {
     currentPage = defaultPageBtn;
   }
   contactSection.classList.toggle("hidden");
-  header.classList.add("header-black");
 });
+
+// Weather
+
+let weather = {
+  apiKey: "0befe37e8723d02c8ab8360d2c402c36",
+  fetchWeather: function (city) {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${this.apiKey}`
+    )
+      .then((response) => response.json())
+      .then((data) => this.displayWeather(data));
+  },
+  displayWeather: function (data) {
+    const { name } = data;
+    const { icon, description } = data.weather[0];
+    const { temp, humidity } = data.main;
+    const { speed } = data.wind;
+    document.querySelector(".city").innerText = `Weather in ${name}`;
+    document.querySelector(
+      ".weather-icon"
+    ).src = `https://openweathermap.org/img/wn/${icon}.png`;
+    document.querySelector(".weather-description").innerText = description;
+    document.querySelector(".temp").innerText = `${temp} °F`;
+    document.querySelector(".humidity").innerText = `Humidity: ${humidity}%`;
+    document.querySelector(".wind").innerText = `Wind Speed: ${speed} mph`;
+  },
+  search: function () {
+    this.fetchWeather(document.querySelector(".weather-search").value);
+  },
+};
+
+document.querySelector(".search button").addEventListener("click", function () {
+  weather.search();
+});
+
+document.querySelector(".weather-search").addEventListener("keyup", (e) => {
+  if (e.key == "Enter") {
+    weather.search();
+  }
+});
+
+weather.fetchWeather("Charlottesville");
