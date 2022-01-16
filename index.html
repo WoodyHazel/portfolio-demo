@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woody's Portfolio</title>
+    <link rel="shortcut icon" type="image/jpg" href="https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1635&q=80"/>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap" rel="stylesheet">
-    <title>Woody's Portfolio</title>
 </head>
 <body>
 <!-- Page Background -->
@@ -31,7 +32,7 @@
     <button class="email-btn">Email</button>
   </header>
   <!-- Main Nav -->
-  <nav class="main-nav nav-hidden">
+  <nav class="main-nav scale-zero">
       <ul>
           <li class="link-main-nav">About</li>
           <li class="link-main-nav">Contact</li>
@@ -199,6 +200,14 @@
                 <header class="photos-header">
                     <h2>Photos</h2>
                 </header>
+                <div class="photos-container">
+                  <img src="media/imgs/27194EBB-9906-4F96-AFD1-2E8A821B5092_1_201_a.jpeg" alt="">
+                  <img src="media/imgs/1528C5CE-CCD5-41A8-9F30-29218C4CECAB_1_105_c.jpeg" alt="">
+                  <img src="media/imgs/56E1F11A-2755-4B18-BCF3-A007ADDB9AD0_1_105_c.jpeg" alt="">
+                  <img src="media/imgs/7651029024_IMG_0525.JPG" alt="">
+                  <img src="media/imgs/84D4F830-62AA-4812-8FBB-264A73E28E12_1_201_a.jpeg" alt="">
+                  <img src="media/imgs/EC01F26A-D764-40CC-9D3C-C70D76070A9F_1_105_c.jpeg" alt="">
+                </div>
               </div>
           </section>
           <section class="music">
@@ -208,7 +217,31 @@
                 <i class="fas fa-times close-section-btn"></i>
                 <header class="music-header">
                     <h2>Music</h2>
-                </header>
+                    <p>All stock music from <a target="_blank" href="https://www.free-stock-music.com/">free-stock-music.com</a>.</p>
+                </header>    
+                <div class="music-player">
+                  <h3>Now Playing</h3>
+                  <img class="song-img" src="" alt="">
+                  <div class="music-info">
+                    <h4 class="song-title"></h4>
+                    <h5 class="song-artist"></h5>
+                  </div>
+                  <div class="progress-container">
+                      <div class="progress"></div>
+                    </div>
+                  <audio src="" class="song-audio"></audio>
+                  <div class="controls">
+                    <button id="prev" class="action-btn">
+                      <i class="fas fa-backward"></i>
+                    </button>
+                    <button id="play" class="action-btn">
+                      <i class="fas fa-play"></i>
+                    </button>
+                    <button id="next" class="action-btn">
+                      <i class="fas fa-forward"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
           </section>
           <section class="github">
@@ -238,7 +271,7 @@
           <section class="weather-widget">
               <h2>Weather</h2>
               <div class="search">
-                <input type="text" class="weather-search" placeholder="Search">
+                <input type="text" class="weather-search" placeholder="Search for a city">
                 <button><i class="fas fa-search"></i></button>
               </div>
               <div class="weather">
@@ -252,24 +285,73 @@
                 <div class="wind"></div>
               </div>
           </section>
-          <section>
-              <p>Widget</p>
-          </section>
       </article>
 
   <!-- Apps Page -->
       <article class="apps-page slide-right page">
-          <section>
-              <p>mini app</p>
+          <section class="task-list-app">
+            <div class="section-img"></div>
+            <h4 class="section-title">Task List</h4>
+            <div class="section-container task-list-container scale-zero">
+              <i class="fas fa-times close-section"></i>
+              <header class="task-list-header">
+                <h2>Task List</h2>
+              </header>
+              <div class="task-app-container">
+                <div class="create-task">
+                  <form class="task-form" action="">
+                    <label for="add-task">New Task:</label>
+                    <input type="text" name="add-task" id="add-task" placeholder="Task Title">
+                    <input type="submit" value="Add Task">
+                  </form>
+                </div>
+                <div class="task-list">
+                  <ul class="tasks">
+                  </ul>
+                </div>
+                <div class="clear-tasks">
+                  <button class="clear-tasks-btn">Clear All Tasks</button>
+                </div>
+              </div>
+            </div>
           </section>
-          <section>
-              <p>mini app</p>
+          <section class="blackjack-app">
+            <div class="section-img"></div>
+            <h4 class="section-title">Blackjack</h4>
+            <div class="section-container blackjack-container scale-zero">
+              <i class="fas fa-times close-section"></i>
+              <header class="blackjack-header">
+                <h2>Blackjack</h2>
+              </header>
+              <div class="blackjack-game-container">
+                <button class="start">Start Game</button>
+                <div class="dealer-hand">
+
+                </div>
+                <div class="player-hand">
+
+                </div>
+                <button class="hit">Hit</button>
+                <button class="hold">Hold</button>
+              </div>
+            </div>
           </section>
-          <section>
-              <p>mini app</p>
-          </section>
-          <section>
-              <p>mini app</p>
+          <section class="news-app">
+            <div class="section-img"></div>
+            <h4 class="section-title">News</h4>
+            <div class="section-container news-container scale-zero">
+              <i class="fas fa-times close-section"></i>
+              <header class="news-header">
+                <h2>News</h2>
+              </header>
+              <form class="news-form">
+                <label for="news-input">Search:</label>
+                <input id="news-input" class="news-input" type="text">
+                <input class="news-submit" type="submit">
+              </form>
+              <h3>Displaying news articles for: <span class="search-term"></span></h3>
+              <ul class="news-list"></ul>
+            </div>
           </section>
       </article>
 
