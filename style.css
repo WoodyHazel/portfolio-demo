@@ -104,24 +104,24 @@ body {
   text-transform: uppercase;
   color: #fff;
   background-color: rgba(150, 150, 150, 0.4);
-  padding: 5px 7px;
+  padding: 7px 10px;
   border-radius: 2px;
   cursor: pointer;
 }
 .menu-btn {
   order: -1;
 }
-nav.main-nav {
+.main-nav {
   position: fixed;
   top: 8vh;
   left: 0;
   z-index: 9;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(220, 220, 220);
+  background-color: rgb(235, 235, 235);
   transition: transform 500ms ease-in-out;
 }
-nav.main-nav ul {
+.main-nav ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -130,13 +130,18 @@ nav.main-nav ul {
   padding: 0 10px;
   margin-top: 50px;
 }
-nav.main-nav li {
+.main-nav li {
   background-color: rgb(82, 82, 82);
   border-radius: 5px;
   cursor: pointer;
   color: white;
-  padding: 20px 0;
-  margin: 10px;
+  padding: 15px 0;
+  margin: 5px;
+  font-size: 1.2rem;
+}
+.main-nav li:hover {
+  color: rgb(82, 82, 82);
+  background-color: white;
 }
 
 /* Main */
@@ -154,7 +159,7 @@ main {
 .page {
   width: 100%;
   transition: transform 1s ease-in-out;
-  height: 64vh;
+  height: 62vh;
   position: absolute;
   top: 0;
   left: 0;
@@ -164,7 +169,7 @@ main {
 /* Page Selector */
 .page-selector {
   width: 100%;
-  height: 8vh;
+  height: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -225,8 +230,9 @@ main {
   top: 0;
   float: right;
   cursor: pointer;
-  background-color: transparent;
-  margin-right: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 0 5px;
+  border-bottom-left-radius: 5px;
 }
 /* Default Page Sections */
 /* About */
@@ -272,15 +278,19 @@ section.about .section-img {
 .about-website h3 {
   text-align: center;
   padding: 1rem;
-  background-color: rgb(30, 30, 30);
+  background-color: rgb(82, 82, 82);
   color: #fff;
+  font-size: 1.5rem;
 }
 .about-website p {
-  padding: 1rem;
+  padding: 10px;
+}
+.about-website {
+  padding-bottom: 4rem;
 }
 .mission-statement,
 .code-of-ethics {
-  margin: 1rem;
+  margin: 2rem 1rem;
   padding: 1rem;
   background-color: rgb(30, 30, 30);
   color: #fff;
@@ -290,9 +300,6 @@ section.about .section-img {
 .code-of-ethics h3 {
   text-align: center;
   padding-bottom: 5px;
-}
-.code-of-ethics {
-  margin-bottom: 100px;
 }
 
 /* Contact */
@@ -313,18 +320,27 @@ section.contact .section-img {
 }
 .input-container {
   padding: 5px;
+  width: 100%;
+}
+.contact-form input {
+  padding: 5px;
+  border: none;
+  border-radius: 15px;
 }
 .input-container textarea {
   width: 100%;
   height: 100px;
   padding: 5px;
   margin-top: 5px;
+  border: none;
+  border-radius: 5px;
 }
 .contact-form-submit {
   display: block;
   margin: 0 auto;
   padding: 10px 15px;
-  background-color: rgb(166, 198, 175);
+  background-color: rgb(77, 171, 67);
+  color: #fff;
   border: none;
   border-radius: 5px;
   font-size: 1.2rem;
@@ -345,21 +361,26 @@ section.projects .section-img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  margin-bottom: 4rem;
 }
 .projects-card {
   background-color: rgb(208, 208, 208);
   padding: 1rem;
   text-align: center;
-  margin: 2rem 0;
   border-radius: 5px;
 }
 .projects-card h4 {
-  padding-bottom: 4rem;
+  padding: 1rem;
+}
+.projects-card img {
+  width: 100%;
 }
 .projects-card button {
+  margin-top: 1rem;
   padding: 5px 8px;
 }
-
 /* Skills */
 section.skills .section-img {
   background: no-repeat center/cover
@@ -487,12 +508,13 @@ section.music .section-img {
 }
 
 /* Github */
-section.github .section-img {
+.github .section-img {
   background-color: rgb(78, 44, 108);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 4rem;
+  color: #fff;
 }
 
 /* Settings */
@@ -500,12 +522,32 @@ section.settings .section-img {
   background: no-repeat center/cover
     url(https://images.unsplash.com/photo-1583198432859-635beb4e8600?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80);
 }
+.settings-header {
+  padding: 1rem;
+  text-align: center;
+}
+.settings-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.settings-background button {
+  padding: 5px;
+  margin: 5px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+.settings-background .on-btn {
+  background-color: green;
+}
+.settings-background .off-btn {
+  background-color: red;
+}
 
 /* Widgets Page */
 .widgets-page {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  row-gap: 10px;
   padding: 0 10px;
 }
 /* Weather Widget */
@@ -513,6 +555,8 @@ section.settings .section-img {
   background-color: rgb(115, 138, 151);
   padding-bottom: 1rem;
   height: 100%;
+  border-radius: 5px;
+  text-align: center;
 }
 .weather {
   display: flex;
@@ -659,19 +703,95 @@ section.settings .section-img {
   background: no-repeat center/cover
     url(https://images.unsplash.com/photo-1623522264952-8dff960ec8f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80);
 }
+.blackjack-header {
+  padding: 1rem;
+  text-align: center;
+}
+.blackjack-game-container {
+  background-color: rgb(23, 145, 23);
+  padding: 5px;
+  margin: 0 1rem;
+  border-radius: 2px;
+  text-align: center;
+}
+.blackjack-game-container .card {
+  width: 30px;
+}
+.blackjack-game-container button {
+  padding: 10px;
+}
+.player-hand,
+.dealer-hand {
+  padding: 10px;
+  text-align: left;
+  color: #fff;
+}
 /* News App */
 .news-app .section-img {
   background: no-repeat center/cover
     url(https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
 }
+.news-header {
+  padding: 1rem;
+  text-align: center;
+}
+.news-form {
+  background-color: antiquewhite;
+  padding: 15px 5px;
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 0 1rem;
+  border-radius: 5px;
+}
+.news-input {
+  width: 120px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+.news-submit {
+  padding: 6px 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(62, 121, 193);
+  color: #fff;
+  letter-spacing: 1px;
+}
+.news-form h3 {
+  padding: 10px;
+  text-align: left;
+  font-size: 1rem;
+}
 .news-list li {
-  background-color: white;
+  background-color: rgb(230, 230, 230);
   color: black;
   margin: 1rem;
-  padding: 5px 10px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.news-list li div {
+  text-align: center;
+  padding: 5px;
+}
+.news-list li div h4 {
+  text-align: left;
+}
+.news-list li div h5 {
+  font-weight: bold;
+}
+.news-list li div h6 {
+  padding: 10px;
+  text-transform: uppercase;
 }
 .news-list li a {
-  background-color: blueviolet;
+  background-color: rgb(203, 150, 59);
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .news-item {
   display: flex;

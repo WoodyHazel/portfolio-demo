@@ -67,19 +67,10 @@
                       <div class="professional">
                           <h4>My Work</h4>
                           <div>
-                              <p>I am a web developer. I am a web designer as well since the two go hand in hand, however I am a web developer first. That's because I love coding. I love learning new things and improving on the things I know.</p>
+                              <p>I am a web developer. I'm a web designer as well since the two go hand in hand, however I am a web developer first. That's because I love coding. I love learning new things and improving on the things I know.</p>
                               <p>I am a "self-taught" web developer. I learned to code through various online platforms such as Udemy, FreeCodeCamp, and Youtube.</p>
                           </div>
                       </div>
-                  </section>
-                  <section class="about-website">
-                      <h3>About the Website</h3>
-                      <div>
-                          <p>This is MY website.</p>
-                          <p>It is a space for me to showcase my skills as a web developer and designer. </p>
-                          <p>Everything you see and use, or in other words the entire User Experience and User Interface, was designed and coded by me. The ONLY external resources that are utilized are Font Awesome's library for icons, Google Fonts for fonts, and several websites for stock images and music. There are no frameworks or libraries for the HTML, CSS, or JavaScript.</p>
-                          <p>All the code I wrote from scratch, but of course I had help along the way in the form of online courses and tutorials.</p>
-                        </div>
                   </section>
                   <section class="mission-statement">
                       <h3>My Mission Statement</h3>
@@ -94,6 +85,15 @@
                           <li>Be better.</li>
                         </ul>
                   </section>
+                  <section class="about-website">
+                      <h3>About the Website</h3>
+                      <div>
+                          <p>This is MY website.</p>
+                          <p>It is a space for me to showcase my skills as a web developer and designer. </p>
+                          <p>Everything you see and use, or in other words the entire User Experience and User Interface, was designed and coded by me. The ONLY external resources that are utilized are several online libraries for icons, fonts, and free stock images and music. There are no frameworks or libraries for the HTML, CSS, or JavaScript.</p>
+                          <p>All the code I wrote from scratch, but of course I had help along the way in the form of online courses and tutorials.</p>
+                        </div>
+                  </section>
               </div>
           </section>
           <section class="contact">
@@ -106,7 +106,7 @@
                       <p>Fill out the form below to get in touch.</p>
                       <p>All fields are required.</p>
                   </header>
-                  <form class="contact-form" action="">
+                  <form class="contact-form">
                       <div class="input-container">
                         <label for="name">Name:</label>
                         <input type="text" id="name">
@@ -138,11 +138,19 @@
                   <div class="projects-container">
                       <div class="projects-card">
                         <h4>Woody's Web</h4>
+                        <img src="media/imgs/Screen Shot 2022-01-17 at 10.05.16 AM.png" alt="">
                         <button>Details</button>
                         <button>View Code</button>
                       </div>
                       <div class="projects-card">
                         <h4>Meala Media</h4>
+                        <img src="media/imgs/Screen Shot 2022-01-17 at 10.13.01 AM.png" alt="">
+                        <button>Details</button>
+                        <button>View Code</button>
+                      </div>
+                      <div class="projects-card">
+                        <h4>Hazel River Landscapes</h4>
+                        <img src="media/imgs/Screen Shot 2022-01-17 at 10.13.40 AM.png" alt="">
                         <button>Details</button>
                         <button>View Code</button>
                       </div>
@@ -245,14 +253,8 @@
               </div>
           </section>
           <section class="github">
-              <div class="section-img"><i class="fab fa-github"></i></div>
-              <h4 class="section-title">Github</h4>
-              <div class="section-container section-github hidden">
-                <i class="fas fa-times close-section-btn"></i>
-                <header class="github-header">
-                    <h2>Github</h2>
-                </header>
-              </div>
+            <a class="section-img" target="_blank" href="https://github.com/WoodyHazel/"><i class="fab fa-github"></i></a>
+            <h4 class="section-title">Github</h4>
           </section>
           <section class="settings">
               <div class="section-img"></div>
@@ -262,6 +264,12 @@
                 <header class="settings-header">
                     <h2>Settings</h2>
                 </header>
+                <div class="settings-background">
+                  <h4>Scaling Background:</h4>
+                  <button class="on-btn">ON</button>
+                  <button class="off-btn">OFF</button>
+                </div>
+                
               </div>
           </section>
       </article>
@@ -326,13 +334,23 @@
               <div class="blackjack-game-container">
                 <button class="start">Start Game</button>
                 <div class="dealer-hand">
-
+                  <h3>Dealer's Hand: 
+                    <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" class="dealer-card-1 card">
+                    <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" class="dealer-card-2 card">
+                    <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" class="dealer-card-3 card">
+                    <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" class="dealer-card-4 card">
+                  </h3>
                 </div>
                 <div class="player-hand">
-
+                  <h3>Player's Hand:
+                    <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" class="player-card-1 card">
+                    <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" class="player-card-2 card">
+                    <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" class="player-card-3 card">
+                    <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" class="player-card-4 card">
+                  </h3>
                 </div>
                 <button class="hit">Hit</button>
-                <button class="hold">Hold</button>
+                <button class="stand">Stand</button>
               </div>
             </div>
           </section>
@@ -348,8 +366,8 @@
                 <label for="news-input">Search:</label>
                 <input id="news-input" class="news-input" type="text">
                 <input class="news-submit" type="submit">
+                <h3>Displaying news articles for: <span class="search-term"></span></h3>
               </form>
-              <h3>Displaying news articles for: <span class="search-term"></span></h3>
               <ul class="news-list"></ul>
             </div>
           </section>

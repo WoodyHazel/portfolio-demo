@@ -186,7 +186,6 @@ const projectsSection = document.querySelector(".section-projects");
 const skillsSection = document.querySelector(".section-skills");
 const photosSection = document.querySelector(".section-photos");
 const musicSection = document.querySelector(".section-music");
-const githubSection = document.querySelector(".section-github");
 const settingsSection = document.querySelector(".section-settings");
 
 defaultPageSections.forEach((item) => {
@@ -203,10 +202,6 @@ defaultPageSections.forEach((item) => {
       photosSection.classList.toggle("hidden");
     } else if (e.target.parentElement.classList.contains("music")) {
       musicSection.classList.toggle("hidden");
-    } else if (
-      e.target.parentElement.parentElement.classList.contains("github")
-    ) {
-      githubSection.classList.toggle("hidden");
     } else if (e.target.parentElement.classList.contains("settings")) {
       settingsSection.classList.toggle("hidden");
     }
@@ -316,6 +311,25 @@ songAudio.addEventListener("timeupdate", updateProgress);
 progressContainer.addEventListener("click", setProgress);
 
 songAudio.addEventListener("ended", nextSong);
+
+// Expanded Section: Settings
+
+const onBtn = document.querySelector(".on-btn");
+const offBtn = document.querySelector(".off-btn");
+const pageBackground = document.querySelector(".page-background");
+
+onBtn.addEventListener("click", () => {
+  pageBackground.style.animation =
+    "scale-background 30s ease-in-out forwards infinite alternate";
+  onBtn.style.backgroundColor = "green";
+  offBtn.style.backgroundColor = "red";
+});
+
+offBtn.addEventListener("click", () => {
+  pageBackground.style.animation = "none";
+  offBtn.style.backgroundColor = "green";
+  onBtn.style.backgroundColor = "red";
+});
 
 // Widgets Page
 // Weather Widget
@@ -436,6 +450,312 @@ function appsPageReset() {
       item.nextElementSibling.nextElementSibling.classList.add("scale-zero");
     }
   });
+}
+
+// Blackjack
+
+const deck = [
+  {
+    value: 11,
+    img: "media/imgs/PNG-cards-1.3/ace_of_hearts.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/king_of_hearts.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/queen_of_hearts.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/jack_of_hearts.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/10_of_hearts.png",
+  },
+  {
+    value: 9,
+    img: "media/imgs/PNG-cards-1.3/9_of_hearts.png",
+  },
+  {
+    value: 8,
+    img: "media/imgs/PNG-cards-1.3/8_of_hearts.png",
+  },
+  {
+    value: 7,
+    img: "media/imgs/PNG-cards-1.3/7_of_hearts.png",
+  },
+  {
+    value: 6,
+    img: "media/imgs/PNG-cards-1.3/6_of_hearts.png",
+  },
+  {
+    value: 5,
+    img: "media/imgs/PNG-cards-1.3/5_of_hearts.png",
+  },
+  {
+    value: 4,
+    img: "media/imgs/PNG-cards-1.3/4_of_hearts.png",
+  },
+  {
+    value: 3,
+    img: "media/imgs/PNG-cards-1.3/3_of_hearts.png",
+  },
+  {
+    value: 2,
+    img: "media/imgs/PNG-cards-1.3/2_of_hearts.png",
+  },
+  {
+    value: 11,
+    img: "media/imgs/PNG-cards-1.3/ace_of_spades.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/king_of_spades.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/queen_of_spades.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/jack_of_spades.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/10_of_spades.png",
+  },
+  {
+    value: 9,
+    img: "media/imgs/PNG-cards-1.3/9_of_spades.png",
+  },
+  {
+    value: 8,
+    img: "media/imgs/PNG-cards-1.3/8_of_spades.png",
+  },
+  {
+    value: 7,
+    img: "media/imgs/PNG-cards-1.3/7_of_spades.png",
+  },
+  {
+    value: 6,
+    img: "media/imgs/PNG-cards-1.3/6_of_spades.png",
+  },
+  {
+    value: 5,
+    img: "media/imgs/PNG-cards-1.3/5_of_spades.png",
+  },
+  {
+    value: 4,
+    img: "media/imgs/PNG-cards-1.3/4_of_spades.png",
+  },
+  {
+    value: 3,
+    img: "media/imgs/PNG-cards-1.3/3_of_spades.png",
+  },
+  {
+    value: 2,
+    img: "media/imgs/PNG-cards-1.3/2_of_spades.png",
+  },
+  {
+    value: 11,
+    img: "media/imgs/PNG-cards-1.3/ace_of_diamonds.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/king_of_diamonds.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/queen_of_diamonds.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/jack_of_diamonds.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/10_of_diamonds.png",
+  },
+  {
+    value: 9,
+    img: "media/imgs/PNG-cards-1.3/9_of_diamonds.png",
+  },
+  {
+    value: 8,
+    img: "media/imgs/PNG-cards-1.3/8_of_diamonds.png",
+  },
+  {
+    value: 7,
+    img: "media/imgs/PNG-cards-1.3/7_of_diamonds.png",
+  },
+  {
+    value: 6,
+    img: "media/imgs/PNG-cards-1.3/6_of_diamonds.png",
+  },
+  {
+    value: 5,
+    img: "media/imgs/PNG-cards-1.3/5_of_diamonds.png",
+  },
+  {
+    value: 4,
+    img: "media/imgs/PNG-cards-1.3/4_of_diamonds.png",
+  },
+  {
+    value: 3,
+    img: "media/imgs/PNG-cards-1.3/3_of_diamonds.png",
+  },
+  {
+    value: 2,
+    img: "media/imgs/PNG-cards-1.3/2_of_diamonds.png",
+  },
+  {
+    value: 11,
+    img: "media/imgs/PNG-cards-1.3/ace_of_clubs.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/king_of_clubs.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/queen_of_clubs.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/jack_of_clubs.png",
+  },
+  {
+    value: 10,
+    img: "media/imgs/PNG-cards-1.3/10_of_clubs.png",
+  },
+  {
+    value: 9,
+    img: "media/imgs/PNG-cards-1.3/9_of_clubs.png",
+  },
+  {
+    value: 8,
+    img: "media/imgs/PNG-cards-1.3/8_of_clubs.png",
+  },
+  {
+    value: 7,
+    img: "media/imgs/PNG-cards-1.3/7_of_clubs.png",
+  },
+  {
+    value: 6,
+    img: "media/imgs/PNG-cards-1.3/6_of_clubs.png",
+  },
+  {
+    value: 5,
+    img: "media/imgs/PNG-cards-1.3/5_of_clubs.png",
+  },
+  {
+    value: 4,
+    img: "media/imgs/PNG-cards-1.3/4_of_clubs.png",
+  },
+  {
+    value: 3,
+    img: "media/imgs/PNG-cards-1.3/3_of_clubs.png",
+  },
+  {
+    value: 2,
+    img: "media/imgs/PNG-cards-1.3/2_of_clubs.png",
+  },
+];
+const dCard1 = document.querySelector(".dealer-card-1");
+const dCard2 = document.querySelector(".dealer-card-2");
+const dCard3 = document.querySelector(".dealer-card-3");
+const dCard4 = document.querySelector(".dealer-card-4");
+const pCard1 = document.querySelector(".player-card-1");
+const pCard2 = document.querySelector(".player-card-2");
+const pCard3 = document.querySelector(".player-card-3");
+const pCard4 = document.querySelector(".player-card-4");
+
+const hit = document.querySelector(".hit");
+const stand = document.querySelector(".stand");
+const startGameBtn = document.querySelector(".start");
+
+let dealerSum = 0;
+let playerSum = 0;
+
+startGameBtn.addEventListener("click", startGame);
+
+hit.addEventListener("click", () => {
+  setPCard3();
+  if (playerSum == 21) {
+    console.log("you win");
+  } else if (playerSum > 21) {
+    console.log("you lose");
+  }
+});
+stand.addEventListener("click", () => {
+  setDCard2();
+  if (dealerSum == 21) {
+    console.log("dealer wins");
+  } else if (dealerSum > 21) {
+    console.log("dealer loses");
+  }
+});
+
+function gameReset() {
+  dealerSum = 0;
+  playerSum = 0;
+  dCard2.setAttribute(
+    "src",
+    "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+  );
+  pCard3.setAttribute(
+    "src",
+    "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+  );
+}
+
+function startGame() {
+  gameReset();
+  setDCard1();
+  setPCard1();
+  setPCard2();
+  if (playerSum == 21) {
+    console.log("you win");
+  } else if (playerSum > 21) {
+    console.log("you lose");
+  }
+}
+
+function setDCard1() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard1.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+}
+function setDCard2() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard2.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+}
+function setPCard1() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard1.setAttribute("src", cardImg);
+  playerSum += cardValue;
+}
+function setPCard2() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard2.setAttribute("src", cardImg);
+  playerSum += cardValue;
+}
+function setPCard3() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard3.setAttribute("src", cardImg);
+  playerSum += cardValue;
+}
+
+function getRandCard() {
+  const randIndex = Math.floor(Math.random() * 51);
+  return {
+    cardImg: deck[randIndex].img,
+    cardValue: deck[randIndex].value,
+  };
 }
 
 // News APP
