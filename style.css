@@ -353,29 +353,32 @@ section.projects .section-img {
     url(https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
 }
 .projects-header {
-  text-align: center;
   padding: 1rem;
+  width: max-content;
+  margin: 0 auto;
 }
 .projects-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 0 1rem;
-  margin-bottom: 4rem;
+  row-gap: 4rem;
+  padding: 1rem 8rem;
+  margin-bottom: 100px;
 }
 .projects-card {
   background-color: rgb(208, 208, 208);
-  padding: 1rem;
+  padding-bottom: 1rem;
   text-align: center;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .projects-card h4 {
   padding: 1rem;
 }
 .projects-card img {
-  width: 100%;
+  height: 300px;
 }
 .projects-card button {
   margin-top: 1rem;
@@ -713,9 +716,10 @@ section.settings .section-img {
   margin: 0 1rem;
   border-radius: 2px;
   text-align: center;
+  position: relative;
 }
 .blackjack-game-container .card {
-  width: 30px;
+  width: 80px;
 }
 .blackjack-game-container button {
   padding: 10px;
@@ -723,8 +727,51 @@ section.settings .section-img {
 .player-hand,
 .dealer-hand {
   padding: 10px;
-  text-align: left;
+  text-align: center;
   color: #fff;
+}
+.hand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hand div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hand img {
+  margin: 10px;
+}
+.gameover {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(74, 74, 74, 0.85);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.gameover button {
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 1.5rem;
+  color: rgb(10, 118, 10);
+  cursor: pointer;
+}
+.game-result {
+  font-size: 2rem;
+  color: rgb(252, 223, 0);
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2px 10px;
+  border-radius: 10px;
 }
 /* News App */
 .news-app .section-img {
@@ -882,45 +929,110 @@ section.settings .section-img {
 }
 
 /* Media Queries */
-@media screen and (min-width: 600px) {
+
+@media only screen and (min-width: 768px) {
   .main-header {
-    padding: 2rem;
-  }
-  .main-header button {
-    font-size: 1.4rem;
+    padding: 1rem 3rem;
   }
   .main-header .page-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
-  .default-page {
-    gap: 2rem;
-    padding: 0 2rem;
-  }
-  .default-page .section-title {
+  .main-header button {
     font-size: 1.3rem;
+    padding: 12px 20px;
+  }
+  .default-page,
+  .apps-page {
+    padding: 0 3rem;
+    column-gap: 2rem;
+  }
+  .default-page .section-title,
+  .apps-page .section-title {
+    font-size: 1.4rem;
+  }
+  .page-selector button {
+    padding: 12px;
+    margin: 8px 15px;
   }
   .main-footer {
-    width: 90%;
+    width: 85%;
     left: 50%;
     transform: translateX(-50%);
   }
-  .main-footer li {
-    font-size: 1.4rem;
-    margin: 5px 10px;
+  .footer-nav ul {
+    padding: 2rem 2rem 0;
   }
-}
-@media screen and (min-width: 900px) {
-  .main-header {
-    padding: 0 6rem;
+  .footer-nav li {
+    margin: 1rem;
+    font-size: 1.5rem;
   }
-  .default-page {
-    column-gap: 4rem;
+  .widgets-page {
     padding: 0 4rem;
   }
-  .main-footer ul {
-    padding: 1rem 1rem 0;
+  .weather-widget {
+    padding: 2rem;
+    font-size: 1.6rem;
   }
-  .main-footer li {
-    margin: 1rem 3rem;
+  .weather-widget .city {
+    font-size: 2rem;
+  }
+  .section-container .close-section-btn {
+    font-size: 4rem;
+  }
+  .about-me {
+    padding: 4rem;
+    font-size: 1.2rem;
+  }
+  .about-header {
+    font-size: 1.6rem;
+  }
+  .mission-statement,
+  .code-of-ethics {
+    padding: 2rem;
+    margin: 4rem;
+    font-size: 1.2rem;
+  }
+  .about-website {
+    font-size: 1.2rem;
+    margin-bottom: 100px;
+  }
+  .about-website div {
+    padding: 2rem 4rem;
+  }
+  .contact-header {
+    font-size: 1.2rem;
+  }
+  .contact-form {
+    padding: 4rem;
+    margin: 4rem 6rem;
+    font-size: 1.2rem;
+  }
+  .input-container {
+    padding: 1rem;
+  }
+  .projects-header {
+    font-size: 1.2rem;
+  }
+  .projects-card {
+    font-size: 1.2rem;
+  }
+  .section-skills section {
+    padding: 1rem 4rem;
+  }
+  .photos-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    padding: 0 1rem;
+  }
+  .photos-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0;
+  }
+  .music-player {
+    width: 80%;
+    margin: 0 auto;
+    padding: 0 4rem 1rem;
   }
 }

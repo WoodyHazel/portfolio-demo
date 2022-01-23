@@ -673,43 +673,101 @@ const pCard2 = document.querySelector(".player-card-2");
 const pCard3 = document.querySelector(".player-card-3");
 const pCard4 = document.querySelector(".player-card-4");
 
+const playingCards = document.querySelectorAll(
+  ".blackjack-game-container .card"
+);
+
+const gameOver = document.querySelector(".gameover");
+const gameResult = document.querySelector(".game-result");
+
 const hit = document.querySelector(".hit");
 const stand = document.querySelector(".stand");
 const startGameBtn = document.querySelector(".start");
 
+const newGameBtn = document.querySelector(".new-game");
+
 let dealerSum = 0;
 let playerSum = 0;
 
+let randIndex;
+let currentDeck;
+
+let hitClicked = false;
+
 startGameBtn.addEventListener("click", startGame);
+newGameBtn.addEventListener("click", startGame);
 
 hit.addEventListener("click", () => {
-  setPCard3();
-  if (playerSum == 21) {
-    console.log("you win");
-  } else if (playerSum > 21) {
-    console.log("you lose");
+  if (hitClicked == false) {
+    setPCard3();
+    hitClicked = true;
+    if (playerSum == 21) {
+      gameOver.classList.toggle("scale-zero");
+      gameResult.innerText = "You got Blackjack! You win!";
+    } else if (playerSum > 21) {
+      gameOver.classList.toggle("scale-zero");
+      gameResult.innerText = "Player bust. You lose.";
+    }
+  } else if (hitClicked) {
+    setPCard4();
+    if (playerSum == 21) {
+      gameOver.classList.toggle("scale-zero");
+      gameResult.innerText = "You got Blackjack! You win!";
+    } else if (playerSum > 21) {
+      gameOver.classList.toggle("scale-zero");
+      gameResult.innerText = "Player bust. You lose.";
+    }
   }
 });
 stand.addEventListener("click", () => {
   setDCard2();
   if (dealerSum == 21) {
-    console.log("dealer wins");
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "Dealer got Blackjack. You lose.";
   } else if (dealerSum > 21) {
-    console.log("dealer loses");
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "Dealer bust. You win!";
+  } else if (dealerSum > playerSum) {
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "Dealer wins.";
+  } else if (dealerSum <= playerSum) {
+    setDCard3();
+    if (dealerSum == 21) {
+      gameOver.classList.toggle("scale-zero");
+      gameResult.innerText = "Dealer got Blackjack. You lose.";
+    } else if (dealerSum > 21) {
+      gameOver.classList.toggle("scale-zero");
+      gameResult.innerText = "Dealer bust. You win!";
+    } else if (dealerSum > playerSum) {
+      gameOver.classList.toggle("scale-zero");
+      gameResult.innerText = "Dealer wins.";
+    } else if (dealerSum <= playerSum) {
+      setDCard4();
+      if (dealerSum == 21) {
+        gameOver.classList.toggle("scale-zero");
+        gameResult.innerText = "Dealer got Blackjack. You lose.";
+      } else if (dealerSum > 21) {
+        gameOver.classList.toggle("scale-zero");
+        gameResult.innerText = "Dealer bust. You win!";
+      }
+    }
   }
 });
 
 function gameReset() {
   dealerSum = 0;
   playerSum = 0;
-  dCard2.setAttribute(
-    "src",
-    "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-  );
-  pCard3.setAttribute(
-    "src",
-    "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-  );
+  if (!gameOver.classList.contains("scale-zero")) {
+    gameOver.classList.toggle("scale-zero");
+  }
+  currentDeck = [...deck];
+  hitClicked = false;
+  playingCards.forEach((card) => {
+    card.setAttribute(
+      "src",
+      "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+    );
+  });
 }
 
 function startGame() {
@@ -718,9 +776,14 @@ function startGame() {
   setPCard1();
   setPCard2();
   if (playerSum == 21) {
-    console.log("you win");
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "You got Blackjack! You win!";
   } else if (playerSum > 21) {
-    console.log("you lose");
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "Player bust. You lose.";
+  } else if (dealerSum == 21) {
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "Dealer got Blackjack. You Lose.";
   }
 }
 
@@ -728,34 +791,61 @@ function setDCard1() {
   const { cardImg, cardValue } = getRandCard();
   dCard1.setAttribute("src", cardImg);
   dealerSum += cardValue;
+  updateDeck();
 }
 function setDCard2() {
   const { cardImg, cardValue } = getRandCard();
   dCard2.setAttribute("src", cardImg);
   dealerSum += cardValue;
+  updateDeck();
+}
+function setDCard3() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard3.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+  updateDeck();
+}
+function setDCard4() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard4.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+  updateDeck();
 }
 function setPCard1() {
   const { cardImg, cardValue } = getRandCard();
   pCard1.setAttribute("src", cardImg);
   playerSum += cardValue;
+  updateDeck();
 }
 function setPCard2() {
   const { cardImg, cardValue } = getRandCard();
   pCard2.setAttribute("src", cardImg);
   playerSum += cardValue;
+  updateDeck();
 }
 function setPCard3() {
   const { cardImg, cardValue } = getRandCard();
   pCard3.setAttribute("src", cardImg);
   playerSum += cardValue;
+  updateDeck();
+}
+function setPCard4() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard4.setAttribute("src", cardImg);
+  playerSum += cardValue;
+  updateDeck();
 }
 
 function getRandCard() {
-  const randIndex = Math.floor(Math.random() * 51);
+  randIndex = Math.floor(Math.random() * currentDeck.length);
   return {
-    cardImg: deck[randIndex].img,
-    cardValue: deck[randIndex].value,
+    cardImg: currentDeck[randIndex].img,
+    cardValue: currentDeck[randIndex].value,
   };
+}
+
+function updateDeck() {
+  return currentDeck.splice(randIndex, 1);
 }
 
 // News APP
