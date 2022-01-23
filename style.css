@@ -708,7 +708,8 @@ section.settings .section-img {
 }
 .blackjack-header {
   padding: 1rem;
-  text-align: center;
+  width: max-content;
+  margin: 0 auto;
 }
 .blackjack-game-container {
   background-color: rgb(23, 145, 23);
@@ -719,7 +720,7 @@ section.settings .section-img {
   position: relative;
 }
 .blackjack-game-container .card {
-  width: 80px;
+  width: 50px;
 }
 .blackjack-game-container button {
   padding: 10px;
