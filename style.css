@@ -714,13 +714,13 @@ section.settings .section-img {
 .blackjack-game-container {
   background-color: rgb(23, 145, 23);
   padding: 5px;
-  margin: 0 1rem;
+  margin: 0 10px;
   border-radius: 2px;
   text-align: center;
   position: relative;
 }
 .blackjack-game-container .card {
-  width: 50px;
+  width: 45px;
 }
 .blackjack-game-container button {
   padding: 10px;
@@ -743,7 +743,7 @@ section.settings .section-img {
   justify-content: center;
 }
 .hand img {
-  margin: 10px;
+  margin: 5px;
 }
 .gameover {
   width: 100%;
