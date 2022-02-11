@@ -28,7 +28,7 @@ emailBtn.addEventListener("click", () => {
   pageReset();
   pageBtnReset();
   appsPageReset();
-  contactSection.classList.toggle("hidden");
+  contactSection.classList.toggle("slide-down");
 });
 mainNavLinks.forEach((item) => {
   item.addEventListener("click", (e) => {
@@ -40,25 +40,25 @@ mainNavLinks.forEach((item) => {
     const clicked = e.target.innerHTML;
     switch (clicked) {
       case "About":
-        aboutSection.classList.toggle("hidden");
+        aboutSection.classList.toggle("slide-down");
         break;
       case "Contact":
-        contactSection.classList.toggle("hidden");
+        contactSection.classList.toggle("slide-down");
         break;
       case "Projects":
-        projectsSection.classList.toggle("hidden");
+        projectsSection.classList.toggle("slide-down");
         break;
       case "Skills":
-        skillsSection.classList.toggle("hidden");
+        skillsSection.classList.toggle("slide-down");
         break;
       case "Photos":
-        photosSection.classList.toggle("hidden");
+        photosSection.classList.toggle("slide-down");
         break;
       case "Music":
-        musicSection.classList.toggle("hidden");
+        musicSection.classList.toggle("slide-down");
         break;
       case "Settings":
-        settingsSection.classList.toggle("hidden");
+        settingsSection.classList.toggle("slide-down");
         break;
     }
   });
@@ -68,8 +68,8 @@ const expandedSections = document.querySelectorAll(
 );
 function expandedSectionReset() {
   expandedSections.forEach((item) => {
-    if (!item.classList.contains("hidden")) {
-      item.classList.add("hidden");
+    if (!item.classList.contains("slide-down")) {
+      item.classList.add("slide-down");
     }
   });
 }
@@ -155,25 +155,23 @@ projectsFooterBtn.addEventListener("click", () => {
     pageBtnReset();
     currentPage = defaultPageBtn;
   }
-  projectsSection.classList.toggle("hidden");
+  projectsSection.classList.toggle("slide-down");
 });
-
 aboutFooterBtn.addEventListener("click", () => {
   if (currentPage !== defaultPageBtn) {
     pageReset();
     pageBtnReset();
     currentPage = defaultPageBtn;
   }
-  aboutSection.classList.toggle("hidden");
+  aboutSection.classList.toggle("slide-down");
 });
-
 contactFooterBtn.addEventListener("click", () => {
   if (currentPage !== defaultPageBtn) {
     pageReset();
     pageBtnReset();
     currentPage = defaultPageBtn;
   }
-  contactSection.classList.toggle("hidden");
+  contactSection.classList.toggle("slide-down");
 });
 
 // Default Page
@@ -187,32 +185,30 @@ const skillsSection = document.querySelector(".section-skills");
 const photosSection = document.querySelector(".section-photos");
 const musicSection = document.querySelector(".section-music");
 const settingsSection = document.querySelector(".section-settings");
+const closeSectionBtns = document.querySelectorAll(".close-section-btn");
 
 defaultPageSections.forEach((item) => {
   item.addEventListener("click", (e) => {
     if (e.target.parentElement.classList.contains("about")) {
-      aboutSection.classList.toggle("hidden");
+      aboutSection.classList.toggle("slide-down");
     } else if (e.target.parentElement.classList.contains("contact")) {
-      contactSection.classList.toggle("hidden");
+      contactSection.classList.toggle("slide-down");
     } else if (e.target.parentElement.classList.contains("projects")) {
-      projectsSection.classList.toggle("hidden");
+      projectsSection.classList.toggle("slide-down");
     } else if (e.target.parentElement.classList.contains("skills")) {
-      skillsSection.classList.toggle("hidden");
+      skillsSection.classList.toggle("slide-down");
     } else if (e.target.parentElement.classList.contains("photos")) {
-      photosSection.classList.toggle("hidden");
+      photosSection.classList.toggle("slide-down");
     } else if (e.target.parentElement.classList.contains("music")) {
-      musicSection.classList.toggle("hidden");
+      musicSection.classList.toggle("slide-down");
     } else if (e.target.parentElement.classList.contains("settings")) {
-      settingsSection.classList.toggle("hidden");
+      settingsSection.classList.toggle("slide-down");
     }
   });
 });
-
-const closeSectionBtns = document.querySelectorAll(".close-section-btn");
-
 closeSectionBtns.forEach((item) => {
   item.addEventListener("click", (e) => {
-    e.target.parentElement.classList.add("hidden");
+    e.target.parentElement.classList.add("slide-down");
   });
 });
 
@@ -287,12 +283,10 @@ function updateProgress(e) {
   const progressPercent = (currentTime / duration) * 100;
   progress.style.width = `${progressPercent}%`;
 }
-
 function setProgress(e) {
   const width = this.clientWidth;
   const clickX = e.offsetX;
   const duration = songAudio.duration;
-
   songAudio.currentTime = (clickX / width) * duration;
 }
 
@@ -305,15 +299,11 @@ playBtn.addEventListener("click", () => {
 });
 prevBtn.addEventListener("click", () => prevSong());
 nextBtn.addEventListener("click", () => nextSong());
-
 songAudio.addEventListener("timeupdate", updateProgress);
-
 progressContainer.addEventListener("click", setProgress);
-
 songAudio.addEventListener("ended", nextSong);
 
 // Expanded Section: Settings
-
 const onBtn = document.querySelector(".on-btn");
 const offBtn = document.querySelector(".off-btn");
 const pageBackground = document.querySelector(".page-background");
@@ -324,7 +314,6 @@ onBtn.addEventListener("click", () => {
   onBtn.style.backgroundColor = "green";
   offBtn.style.backgroundColor = "red";
 });
-
 offBtn.addEventListener("click", () => {
   pageBackground.style.animation = "none";
   offBtn.style.backgroundColor = "green";
@@ -347,7 +336,7 @@ let weather = {
     const { icon, description } = data.weather[0];
     const { temp, humidity } = data.main;
     const { speed } = data.wind;
-    document.querySelector(".city").innerText = `Weather in ${name}`;
+    document.querySelector(".city span").innerText = name;
     document.querySelector(
       ".weather-icon"
     ).src = `https://openweathermap.org/img/wn/${icon}.png`;
@@ -360,28 +349,46 @@ let weather = {
     this.fetchWeather(document.querySelector(".weather-search").value);
   },
 };
-
 document.querySelector(".search button").addEventListener("click", function () {
   weather.search();
   document.querySelector(".weather-search").value = "";
 });
-
 document.querySelector(".weather-search").addEventListener("keyup", (e) => {
   if (e.key == "Enter") {
     weather.search();
     document.querySelector(".weather-search").value = "";
   }
 });
-
 weather.fetchWeather("Charlottesville");
 
-// Apps Page
+// Fact Widget
+const factBtn = document.querySelector(".fact-btn");
+const fact = document.querySelector(".fact");
 
+function fetchFact() {
+  fetch("https://uselessfacts.jsph.pl/random.json?language=en")
+    .then((response) => response.json())
+    .then((data) => (fact.innerText = data.text));
+}
+fetchFact();
+factBtn.addEventListener("click", fetchFact);
+// Apps Page
 const appsPageSections = document.querySelectorAll(".apps-page .section-img");
 const appsPageCloseBtns = document.querySelectorAll(
   ".apps-page .close-section"
 );
 
+function appsPageReset() {
+  appsPageSections.forEach((item) => {
+    if (
+      !item.nextElementSibling.nextElementSibling.classList.contains(
+        "scale-zero"
+      )
+    ) {
+      item.nextElementSibling.nextElementSibling.classList.add("scale-zero");
+    }
+  });
+}
 appsPageSections.forEach((item) => {
   item.addEventListener("click", (e) => {
     e.target.nextElementSibling.nextElementSibling.classList.remove(
@@ -398,62 +405,41 @@ appsPageCloseBtns.forEach((item) => {
 });
 
 // Task List App
-
 const taskListApp = document.querySelector(".task-list-container");
 const taskForm = document.querySelector(".task-form");
 const taskList = document.querySelector(".tasks");
 const clearTasks = document.querySelector(".clear-tasks-btn");
 const addTaskInput = document.querySelector("#add-task");
 
-taskForm.addEventListener("submit", addTask);
-
 function addTask(e) {
   if (addTaskInput.value === "") {
     alert("Task Title Required");
   } else {
-    // create li
     const li = document.createElement("li");
     li.classList.add("task-list-item");
     li.appendChild(document.createTextNode(addTaskInput.value));
-
-    // create remove icon
     const removeTask = document.createElement("a");
     removeTask.classList.add("remove-task");
     removeTask.innerHTML = '<i class="fas fa-times"></i>';
     li.appendChild(removeTask);
-
     taskList.appendChild(li);
   }
-  // clear input
   addTaskInput.value = "";
   e.preventDefault();
 }
-
 function removeTask(e) {
   if (e.target.classList.contains("fa-times")) {
     e.target.parentElement.parentElement.remove();
   }
 }
-taskList.addEventListener("click", removeTask);
 
+taskForm.addEventListener("submit", addTask);
+taskList.addEventListener("click", removeTask);
 clearTasks.addEventListener("click", () => {
   taskList.innerHTML = "";
 });
 
-function appsPageReset() {
-  appsPageSections.forEach((item) => {
-    if (
-      !item.nextElementSibling.nextElementSibling.classList.contains(
-        "scale-zero"
-      )
-    ) {
-      item.nextElementSibling.nextElementSibling.classList.add("scale-zero");
-    }
-  });
-}
-
 // Blackjack
-
 const deck = [
   {
     value: 11,
@@ -683,16 +669,103 @@ const gameResult = document.querySelector(".game-result");
 const hit = document.querySelector(".hit");
 const stand = document.querySelector(".stand");
 const startGameBtn = document.querySelector(".start");
-
 const newGameBtn = document.querySelector(".new-game");
 
 let dealerSum = 0;
 let playerSum = 0;
-
 let randIndex;
 let currentDeck;
-
 let hitClicked = false;
+
+function gameReset() {
+  dealerSum = 0;
+  playerSum = 0;
+  if (!gameOver.classList.contains("scale-zero")) {
+    gameOver.classList.toggle("scale-zero");
+  }
+  currentDeck = [...deck];
+  hitClicked = false;
+  playingCards.forEach((card) => {
+    card.setAttribute(
+      "src",
+      "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+    );
+  });
+}
+function startGame() {
+  gameReset();
+  setDCard1();
+  setPCard1();
+  setPCard2();
+  if (playerSum == 21) {
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "You got Blackjack! You win!";
+  } else if (playerSum > 21) {
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "Player bust. You lose.";
+  } else if (dealerSum == 21) {
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "Dealer got Blackjack. You Lose.";
+  }
+}
+function setDCard1() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard1.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+  updateDeck();
+}
+function setDCard2() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard2.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+  updateDeck();
+}
+function setDCard3() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard3.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+  updateDeck();
+}
+function setDCard4() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard4.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+  updateDeck();
+}
+function setPCard1() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard1.setAttribute("src", cardImg);
+  playerSum += cardValue;
+  updateDeck();
+}
+function setPCard2() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard2.setAttribute("src", cardImg);
+  playerSum += cardValue;
+  updateDeck();
+}
+function setPCard3() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard3.setAttribute("src", cardImg);
+  playerSum += cardValue;
+  updateDeck();
+}
+function setPCard4() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard4.setAttribute("src", cardImg);
+  playerSum += cardValue;
+  updateDeck();
+}
+function getRandCard() {
+  randIndex = Math.floor(Math.random() * currentDeck.length);
+  return {
+    cardImg: currentDeck[randIndex].img,
+    cardValue: currentDeck[randIndex].value,
+  };
+}
+function updateDeck() {
+  return currentDeck.splice(randIndex, 1);
+}
 
 startGameBtn.addEventListener("click", startGame);
 newGameBtn.addEventListener("click", startGame);
@@ -754,109 +827,12 @@ stand.addEventListener("click", () => {
   }
 });
 
-function gameReset() {
-  dealerSum = 0;
-  playerSum = 0;
-  if (!gameOver.classList.contains("scale-zero")) {
-    gameOver.classList.toggle("scale-zero");
-  }
-  currentDeck = [...deck];
-  hitClicked = false;
-  playingCards.forEach((card) => {
-    card.setAttribute(
-      "src",
-      "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-    );
-  });
-}
-
-function startGame() {
-  gameReset();
-  setDCard1();
-  setPCard1();
-  setPCard2();
-  if (playerSum == 21) {
-    gameOver.classList.toggle("scale-zero");
-    gameResult.innerText = "You got Blackjack! You win!";
-  } else if (playerSum > 21) {
-    gameOver.classList.toggle("scale-zero");
-    gameResult.innerText = "Player bust. You lose.";
-  } else if (dealerSum == 21) {
-    gameOver.classList.toggle("scale-zero");
-    gameResult.innerText = "Dealer got Blackjack. You Lose.";
-  }
-}
-
-function setDCard1() {
-  const { cardImg, cardValue } = getRandCard();
-  dCard1.setAttribute("src", cardImg);
-  dealerSum += cardValue;
-  updateDeck();
-}
-function setDCard2() {
-  const { cardImg, cardValue } = getRandCard();
-  dCard2.setAttribute("src", cardImg);
-  dealerSum += cardValue;
-  updateDeck();
-}
-function setDCard3() {
-  const { cardImg, cardValue } = getRandCard();
-  dCard3.setAttribute("src", cardImg);
-  dealerSum += cardValue;
-  updateDeck();
-}
-function setDCard4() {
-  const { cardImg, cardValue } = getRandCard();
-  dCard4.setAttribute("src", cardImg);
-  dealerSum += cardValue;
-  updateDeck();
-}
-function setPCard1() {
-  const { cardImg, cardValue } = getRandCard();
-  pCard1.setAttribute("src", cardImg);
-  playerSum += cardValue;
-  updateDeck();
-}
-function setPCard2() {
-  const { cardImg, cardValue } = getRandCard();
-  pCard2.setAttribute("src", cardImg);
-  playerSum += cardValue;
-  updateDeck();
-}
-function setPCard3() {
-  const { cardImg, cardValue } = getRandCard();
-  pCard3.setAttribute("src", cardImg);
-  playerSum += cardValue;
-  updateDeck();
-}
-function setPCard4() {
-  const { cardImg, cardValue } = getRandCard();
-  pCard4.setAttribute("src", cardImg);
-  playerSum += cardValue;
-  updateDeck();
-}
-
-function getRandCard() {
-  randIndex = Math.floor(Math.random() * currentDeck.length);
-  return {
-    cardImg: currentDeck[randIndex].img,
-    cardValue: currentDeck[randIndex].value,
-  };
-}
-
-function updateDeck() {
-  return currentDeck.splice(randIndex, 1);
-}
-
 // News APP
-
 const newsInput = document.querySelector(".news-input");
 const newsSubmit = document.querySelector(".news-submit");
 const newsList = document.querySelector(".news-list");
 const newsForm = document.querySelector(".news-form");
 const searchTerm = document.querySelector(".search-term");
-
-newsForm.addEventListener("submit", getNews);
 
 function getNews(e) {
   const keyword = newsInput.value;
@@ -897,3 +873,4 @@ function displayNews(data) {
     newsList.appendChild(li);
   });
 }
+newsForm.addEventListener("submit", getNews);
