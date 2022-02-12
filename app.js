@@ -12,6 +12,7 @@ function loaderTimer() {
 window.addEventListener("scroll", loaderTimer);
 
 // Header
+const mainHeader = document.querySelector(".main-header");
 const menuBtn = document.querySelector(".menu-btn");
 const mainNav = document.querySelector(".main-nav");
 const mainNavLinks = document.querySelectorAll(".link-main-nav");
@@ -28,7 +29,8 @@ emailBtn.addEventListener("click", () => {
   pageReset();
   pageBtnReset();
   appsPageReset();
-  contactSection.classList.toggle("slide-down");
+  contactSection.classList.toggle("hidden");
+  mainHeader.classList.add("header-alt");
 });
 mainNavLinks.forEach((item) => {
   item.addEventListener("click", (e) => {
@@ -40,25 +42,25 @@ mainNavLinks.forEach((item) => {
     const clicked = e.target.innerHTML;
     switch (clicked) {
       case "About":
-        aboutSection.classList.toggle("slide-down");
+        aboutSection.classList.toggle("hidden");
         break;
       case "Contact":
-        contactSection.classList.toggle("slide-down");
+        contactSection.classList.toggle("hidden");
         break;
       case "Projects":
-        projectsSection.classList.toggle("slide-down");
+        projectsSection.classList.toggle("hidden");
         break;
       case "Skills":
-        skillsSection.classList.toggle("slide-down");
+        skillsSection.classList.toggle("hidden");
         break;
       case "Photos":
-        photosSection.classList.toggle("slide-down");
+        photosSection.classList.toggle("hidden");
         break;
       case "Music":
-        musicSection.classList.toggle("slide-down");
+        musicSection.classList.toggle("hidden");
         break;
       case "Settings":
-        settingsSection.classList.toggle("slide-down");
+        settingsSection.classList.toggle("hidden");
         break;
     }
   });
@@ -68,8 +70,8 @@ const expandedSections = document.querySelectorAll(
 );
 function expandedSectionReset() {
   expandedSections.forEach((item) => {
-    if (!item.classList.contains("slide-down")) {
-      item.classList.add("slide-down");
+    if (!item.classList.contains("hidden")) {
+      item.classList.add("hidden");
     }
   });
 }
@@ -155,23 +157,28 @@ projectsFooterBtn.addEventListener("click", () => {
     pageBtnReset();
     currentPage = defaultPageBtn;
   }
-  projectsSection.classList.toggle("slide-down");
+  projectsSection.classList.toggle("hidden");
+  mainHeader.classList.toggle("header-alt");
 });
+
 aboutFooterBtn.addEventListener("click", () => {
   if (currentPage !== defaultPageBtn) {
     pageReset();
     pageBtnReset();
     currentPage = defaultPageBtn;
   }
-  aboutSection.classList.toggle("slide-down");
+  aboutSection.classList.toggle("hidden");
+  mainHeader.classList.toggle("header-alt");
 });
+
 contactFooterBtn.addEventListener("click", () => {
   if (currentPage !== defaultPageBtn) {
     pageReset();
     pageBtnReset();
     currentPage = defaultPageBtn;
   }
-  contactSection.classList.toggle("slide-down");
+  contactSection.classList.toggle("hidden");
+  mainHeader.classList.toggle("header-alt");
 });
 
 // Default Page
@@ -185,30 +192,40 @@ const skillsSection = document.querySelector(".section-skills");
 const photosSection = document.querySelector(".section-photos");
 const musicSection = document.querySelector(".section-music");
 const settingsSection = document.querySelector(".section-settings");
-const closeSectionBtns = document.querySelectorAll(".close-section-btn");
 
 defaultPageSections.forEach((item) => {
   item.addEventListener("click", (e) => {
     if (e.target.parentElement.classList.contains("about")) {
-      aboutSection.classList.toggle("slide-down");
+      aboutSection.classList.toggle("hidden");
+      mainHeader.classList.toggle("header-alt");
     } else if (e.target.parentElement.classList.contains("contact")) {
-      contactSection.classList.toggle("slide-down");
+      contactSection.classList.toggle("hidden");
+      mainHeader.classList.toggle("header-alt");
     } else if (e.target.parentElement.classList.contains("projects")) {
-      projectsSection.classList.toggle("slide-down");
+      projectsSection.classList.toggle("hidden");
+      mainHeader.classList.toggle("header-alt");
     } else if (e.target.parentElement.classList.contains("skills")) {
-      skillsSection.classList.toggle("slide-down");
+      skillsSection.classList.toggle("hidden");
+      mainHeader.classList.toggle("header-alt");
     } else if (e.target.parentElement.classList.contains("photos")) {
-      photosSection.classList.toggle("slide-down");
+      photosSection.classList.toggle("hidden");
+      mainHeader.classList.toggle("header-alt");
     } else if (e.target.parentElement.classList.contains("music")) {
-      musicSection.classList.toggle("slide-down");
+      musicSection.classList.toggle("hidden");
+      mainHeader.classList.toggle("header-alt");
     } else if (e.target.parentElement.classList.contains("settings")) {
-      settingsSection.classList.toggle("slide-down");
+      settingsSection.classList.toggle("hidden");
+      mainHeader.classList.toggle("header-alt");
     }
   });
 });
+
+const closeSectionBtns = document.querySelectorAll(".close-section-btn");
+
 closeSectionBtns.forEach((item) => {
   item.addEventListener("click", (e) => {
-    e.target.parentElement.classList.add("slide-down");
+    e.target.parentElement.classList.add("hidden");
+    mainHeader.classList.remove("header-alt");
   });
 });
 
@@ -283,10 +300,12 @@ function updateProgress(e) {
   const progressPercent = (currentTime / duration) * 100;
   progress.style.width = `${progressPercent}%`;
 }
+
 function setProgress(e) {
   const width = this.clientWidth;
   const clickX = e.offsetX;
   const duration = songAudio.duration;
+
   songAudio.currentTime = (clickX / width) * duration;
 }
 
@@ -299,11 +318,15 @@ playBtn.addEventListener("click", () => {
 });
 prevBtn.addEventListener("click", () => prevSong());
 nextBtn.addEventListener("click", () => nextSong());
+
 songAudio.addEventListener("timeupdate", updateProgress);
+
 progressContainer.addEventListener("click", setProgress);
+
 songAudio.addEventListener("ended", nextSong);
 
 // Expanded Section: Settings
+
 const onBtn = document.querySelector(".on-btn");
 const offBtn = document.querySelector(".off-btn");
 const pageBackground = document.querySelector(".page-background");
@@ -314,6 +337,7 @@ onBtn.addEventListener("click", () => {
   onBtn.style.backgroundColor = "green";
   offBtn.style.backgroundColor = "red";
 });
+
 offBtn.addEventListener("click", () => {
   pageBackground.style.animation = "none";
   offBtn.style.backgroundColor = "green";
@@ -334,14 +358,17 @@ let weather = {
   displayWeather: function (data) {
     const { name } = data;
     const { icon, description } = data.weather[0];
-    const { temp, humidity } = data.main;
+    const { temp, humidity, temp_max, temp_min } = data.main;
     const { speed } = data.wind;
-    document.querySelector(".city span").innerText = name;
+
+    document.querySelector(".city").innerText = name;
+    document.querySelector(".temp").innerText = `${temp} °F`;
     document.querySelector(
       ".weather-icon"
     ).src = `https://openweathermap.org/img/wn/${icon}.png`;
     document.querySelector(".weather-description").innerText = description;
-    document.querySelector(".temp").innerText = `${temp} °F`;
+    document.querySelector(".high").innerText = `High: ${temp_max} °F`;
+    document.querySelector(".low").innerText = `Low: ${temp_min} °F`;
     document.querySelector(".humidity").innerText = `Humidity: ${humidity}%`;
     document.querySelector(".wind").innerText = `Wind Speed: ${speed} mph`;
   },
@@ -353,12 +380,14 @@ document.querySelector(".search button").addEventListener("click", function () {
   weather.search();
   document.querySelector(".weather-search").value = "";
 });
+
 document.querySelector(".weather-search").addEventListener("keyup", (e) => {
   if (e.key == "Enter") {
     weather.search();
     document.querySelector(".weather-search").value = "";
   }
 });
+
 weather.fetchWeather("Charlottesville");
 
 // Fact Widget
@@ -372,11 +401,30 @@ function fetchFact() {
 }
 fetchFact();
 factBtn.addEventListener("click", fetchFact);
+
 // Apps Page
+
 const appsPageSections = document.querySelectorAll(".apps-page .section-img");
 const appsPageCloseBtns = document.querySelectorAll(
   ".apps-page .close-section"
 );
+
+appsPageSections.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    e.target.nextElementSibling.nextElementSibling.classList.remove(
+      "scale-zero"
+    );
+    mainHeader.classList.toggle("header-alt");
+  });
+});
+appsPageCloseBtns.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    if (!e.target.parentElement.classList.contains("scale-zero")) {
+      e.target.parentElement.classList.add("scale-zero");
+    }
+    mainHeader.classList.remove("header-alt");
+  });
+});
 
 function appsPageReset() {
   appsPageSections.forEach((item) => {
@@ -389,31 +437,22 @@ function appsPageReset() {
     }
   });
 }
-appsPageSections.forEach((item) => {
-  item.addEventListener("click", (e) => {
-    e.target.nextElementSibling.nextElementSibling.classList.remove(
-      "scale-zero"
-    );
-  });
-});
-appsPageCloseBtns.forEach((item) => {
-  item.addEventListener("click", (e) => {
-    if (!e.target.parentElement.classList.contains("scale-zero")) {
-      e.target.parentElement.classList.add("scale-zero");
-    }
-  });
-});
-
 // Task List App
+
 const taskListApp = document.querySelector(".task-list-container");
 const taskForm = document.querySelector(".task-form");
 const taskList = document.querySelector(".tasks");
 const clearTasks = document.querySelector(".clear-tasks-btn");
 const addTaskInput = document.querySelector("#add-task");
 
+document.addEventListener("DOMContentLoaded", getTasks);
+
+taskForm.addEventListener("submit", addTask);
+
 function addTask(e) {
   if (addTaskInput.value === "") {
     alert("Task Title Required");
+    e.preventDefault();
   } else {
     const li = document.createElement("li");
     li.classList.add("task-list-item");
@@ -423,23 +462,76 @@ function addTask(e) {
     removeTask.innerHTML = '<i class="fas fa-times"></i>';
     li.appendChild(removeTask);
     taskList.appendChild(li);
+
+    storeTask(addTaskInput.value);
+
+    addTaskInput.value = "";
   }
-  addTaskInput.value = "";
   e.preventDefault();
 }
+
+function storeTask(task) {
+  let tasks;
+  if (localStorage.getItem("tasks") === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
+  tasks.push(task);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function getTasks() {
+  let tasks;
+  if (localStorage.getItem("tasks") === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
+
+  tasks.forEach((task) => {
+    const li = document.createElement("li");
+    li.classList.add("task-list-item");
+    li.appendChild(document.createTextNode(task));
+    const removeTask = document.createElement("a");
+    removeTask.classList.add("remove-task");
+    removeTask.innerHTML = '<i class="fas fa-times"></i>';
+    li.appendChild(removeTask);
+    taskList.appendChild(li);
+  });
+}
+
 function removeTask(e) {
   if (e.target.classList.contains("fa-times")) {
     e.target.parentElement.parentElement.remove();
+    removeFromStorage(e.target.parentElement.parentElement);
   }
 }
 
-taskForm.addEventListener("submit", addTask);
+function removeFromStorage(li) {
+  let tasks;
+  if (localStorage.getItem("tasks") === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
+  tasks.forEach((task, index) => {
+    if (li.textContent === task) {
+      tasks.splice(index, 1);
+    }
+  });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
 taskList.addEventListener("click", removeTask);
+
 clearTasks.addEventListener("click", () => {
   taskList.innerHTML = "";
+  localStorage.clear();
 });
 
 // Blackjack
+
 const deck = [
   {
     value: 11,
@@ -669,103 +761,16 @@ const gameResult = document.querySelector(".game-result");
 const hit = document.querySelector(".hit");
 const stand = document.querySelector(".stand");
 const startGameBtn = document.querySelector(".start");
+
 const newGameBtn = document.querySelector(".new-game");
 
 let dealerSum = 0;
 let playerSum = 0;
+
 let randIndex;
 let currentDeck;
-let hitClicked = false;
 
-function gameReset() {
-  dealerSum = 0;
-  playerSum = 0;
-  if (!gameOver.classList.contains("scale-zero")) {
-    gameOver.classList.toggle("scale-zero");
-  }
-  currentDeck = [...deck];
-  hitClicked = false;
-  playingCards.forEach((card) => {
-    card.setAttribute(
-      "src",
-      "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-    );
-  });
-}
-function startGame() {
-  gameReset();
-  setDCard1();
-  setPCard1();
-  setPCard2();
-  if (playerSum == 21) {
-    gameOver.classList.toggle("scale-zero");
-    gameResult.innerText = "You got Blackjack! You win!";
-  } else if (playerSum > 21) {
-    gameOver.classList.toggle("scale-zero");
-    gameResult.innerText = "Player bust. You lose.";
-  } else if (dealerSum == 21) {
-    gameOver.classList.toggle("scale-zero");
-    gameResult.innerText = "Dealer got Blackjack. You Lose.";
-  }
-}
-function setDCard1() {
-  const { cardImg, cardValue } = getRandCard();
-  dCard1.setAttribute("src", cardImg);
-  dealerSum += cardValue;
-  updateDeck();
-}
-function setDCard2() {
-  const { cardImg, cardValue } = getRandCard();
-  dCard2.setAttribute("src", cardImg);
-  dealerSum += cardValue;
-  updateDeck();
-}
-function setDCard3() {
-  const { cardImg, cardValue } = getRandCard();
-  dCard3.setAttribute("src", cardImg);
-  dealerSum += cardValue;
-  updateDeck();
-}
-function setDCard4() {
-  const { cardImg, cardValue } = getRandCard();
-  dCard4.setAttribute("src", cardImg);
-  dealerSum += cardValue;
-  updateDeck();
-}
-function setPCard1() {
-  const { cardImg, cardValue } = getRandCard();
-  pCard1.setAttribute("src", cardImg);
-  playerSum += cardValue;
-  updateDeck();
-}
-function setPCard2() {
-  const { cardImg, cardValue } = getRandCard();
-  pCard2.setAttribute("src", cardImg);
-  playerSum += cardValue;
-  updateDeck();
-}
-function setPCard3() {
-  const { cardImg, cardValue } = getRandCard();
-  pCard3.setAttribute("src", cardImg);
-  playerSum += cardValue;
-  updateDeck();
-}
-function setPCard4() {
-  const { cardImg, cardValue } = getRandCard();
-  pCard4.setAttribute("src", cardImg);
-  playerSum += cardValue;
-  updateDeck();
-}
-function getRandCard() {
-  randIndex = Math.floor(Math.random() * currentDeck.length);
-  return {
-    cardImg: currentDeck[randIndex].img,
-    cardValue: currentDeck[randIndex].value,
-  };
-}
-function updateDeck() {
-  return currentDeck.splice(randIndex, 1);
-}
+let hitClicked = false;
 
 startGameBtn.addEventListener("click", startGame);
 newGameBtn.addEventListener("click", startGame);
@@ -827,12 +832,109 @@ stand.addEventListener("click", () => {
   }
 });
 
+function gameReset() {
+  dealerSum = 0;
+  playerSum = 0;
+  if (!gameOver.classList.contains("scale-zero")) {
+    gameOver.classList.toggle("scale-zero");
+  }
+  currentDeck = [...deck];
+  hitClicked = false;
+  playingCards.forEach((card) => {
+    card.setAttribute(
+      "src",
+      "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+    );
+  });
+}
+
+function startGame() {
+  gameReset();
+  setDCard1();
+  setPCard1();
+  setPCard2();
+  if (playerSum == 21) {
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "You got Blackjack! You win!";
+  } else if (playerSum > 21) {
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "Player bust. You lose.";
+  } else if (dealerSum == 21) {
+    gameOver.classList.toggle("scale-zero");
+    gameResult.innerText = "Dealer got Blackjack. You Lose.";
+  }
+}
+
+function setDCard1() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard1.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+  updateDeck();
+}
+function setDCard2() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard2.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+  updateDeck();
+}
+function setDCard3() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard3.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+  updateDeck();
+}
+function setDCard4() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard4.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+  updateDeck();
+}
+function setPCard1() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard1.setAttribute("src", cardImg);
+  playerSum += cardValue;
+  updateDeck();
+}
+function setPCard2() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard2.setAttribute("src", cardImg);
+  playerSum += cardValue;
+  updateDeck();
+}
+function setPCard3() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard3.setAttribute("src", cardImg);
+  playerSum += cardValue;
+  updateDeck();
+}
+function setPCard4() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard4.setAttribute("src", cardImg);
+  playerSum += cardValue;
+  updateDeck();
+}
+
+function getRandCard() {
+  randIndex = Math.floor(Math.random() * currentDeck.length);
+  return {
+    cardImg: currentDeck[randIndex].img,
+    cardValue: currentDeck[randIndex].value,
+  };
+}
+
+function updateDeck() {
+  return currentDeck.splice(randIndex, 1);
+}
+
 // News APP
+
 const newsInput = document.querySelector(".news-input");
 const newsSubmit = document.querySelector(".news-submit");
 const newsList = document.querySelector(".news-list");
 const newsForm = document.querySelector(".news-form");
 const searchTerm = document.querySelector(".search-term");
+
+newsForm.addEventListener("submit", getNews);
 
 function getNews(e) {
   const keyword = newsInput.value;
@@ -873,4 +975,3 @@ function displayNews(data) {
     newsList.appendChild(li);
   });
 }
-newsForm.addEventListener("submit", getNews);
