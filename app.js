@@ -402,6 +402,36 @@ function fetchFact() {
 fetchFact();
 factBtn.addEventListener("click", fetchFact);
 
+// WOD Widget
+
+const word = document.querySelector(".word");
+const pos = document.querySelector(".pos");
+const definition = document.querySelector(".definition");
+const wodBtn = document.querySelector(".wod-btn");
+let wod;
+
+function fetchWOD() {
+  fetch("https://random-word-api.herokuapp.com/word?number=1&swear=0")
+    .then((response) => response.json())
+    .then((data) => {
+      word.innerText = data[0];
+      wod = data[0];
+      fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${wod}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.title) {
+            fetchWOD();
+          } else {
+            pos.innerText = `(${data[0].meanings[0].partOfSpeech})`;
+            definition.innerText =
+              data[0].meanings[0].definitions[0].definition;
+          }
+        });
+    });
+}
+wodBtn.addEventListener("click", fetchWOD);
+fetchWOD();
+
 // Apps Page
 
 const appsPageSections = document.querySelectorAll(".apps-page .section-img");
