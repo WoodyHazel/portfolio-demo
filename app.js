@@ -35,6 +35,7 @@ emailBtn.addEventListener("click", () => {
 mainNavLinks.forEach((item) => {
   item.addEventListener("click", (e) => {
     mainNav.classList.toggle("scale-zero");
+    mainHeader.classList.add("header-alt");
     expandedSectionReset();
     pageReset();
     pageBtnReset();
