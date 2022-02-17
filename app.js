@@ -230,6 +230,28 @@ closeSectionBtns.forEach((item) => {
   });
 });
 
+// Expanded Section: Projects
+
+const detailsBtns = document.querySelectorAll(".card-btns .details");
+
+detailsBtns.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    e.target.parentElement.previousElementSibling.firstElementChild.nextElementSibling.classList.toggle(
+      "slide-right"
+    );
+  });
+});
+
+// Expanded Section: Skills
+
+const skillBtns = document.querySelectorAll(".skills .skill-btn");
+
+skillBtns.forEach((item) =>
+  item.addEventListener("click", (e) => {
+    e.target.parentElement.classList.toggle("active");
+  })
+);
+
 // Expanded Section: Music
 const songTitle = document.querySelector(".song-title");
 const songArtist = document.querySelector(".song-artist");
@@ -777,10 +799,12 @@ const dCard1 = document.querySelector(".dealer-card-1");
 const dCard2 = document.querySelector(".dealer-card-2");
 const dCard3 = document.querySelector(".dealer-card-3");
 const dCard4 = document.querySelector(".dealer-card-4");
+const dCard5 = document.querySelector(".dealer-card-5");
 const pCard1 = document.querySelector(".player-card-1");
 const pCard2 = document.querySelector(".player-card-2");
 const pCard3 = document.querySelector(".player-card-3");
 const pCard4 = document.querySelector(".player-card-4");
+const pCard5 = document.querySelector(".player-card-5");
 
 const playingCards = document.querySelectorAll(
   ".blackjack-game-container .card"
@@ -826,6 +850,19 @@ hit.addEventListener("click", () => {
       gameOver.classList.toggle("scale-zero");
       gameResult.innerText = "Player bust. You lose.";
     }
+  } else if (
+    hitClicked &&
+    pCard4.src !=
+      "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+  ) {
+    setPCard5();
+    if (playerSum == 21) {
+      gameOver.classList.toggle("scale-zero");
+      gameResult.innerText = "You got Blackjack! You win!";
+    } else if (playerSum > 21) {
+      gameOver.classList.toggle("scale-zero");
+      gameResult.innerText = "Player bust. You lose.";
+    }
   }
 });
 stand.addEventListener("click", () => {
@@ -858,6 +895,21 @@ stand.addEventListener("click", () => {
       } else if (dealerSum > 21) {
         gameOver.classList.toggle("scale-zero");
         gameResult.innerText = "Dealer bust. You win!";
+      } else if (dealerSum > playerSum) {
+        gameOver.classList.toggle("scale-zero");
+        gameResult.innerText = "Dealer wins.";
+      } else if (dealerSum <= playerSum) {
+        setDCard5();
+        if (dealerSum == 21) {
+          gameOver.classList.toggle("scale-zero");
+          gameResult.innerText = "Dealer got Blackjack. You lose.";
+        } else if (dealerSum > 21) {
+          gameOver.classList.toggle("scale-zero");
+          gameResult.innerText = "Dealer bust. You win!";
+        } else if (dealerSum > playerSum) {
+          gameOver.classList.toggle("scale-zero");
+          gameResult.innerText = "Dealer wins.";
+        }
       }
     }
   }
@@ -920,6 +972,12 @@ function setDCard4() {
   dealerSum += cardValue;
   updateDeck();
 }
+function setDCard5() {
+  const { cardImg, cardValue } = getRandCard();
+  dCard4.setAttribute("src", cardImg);
+  dealerSum += cardValue;
+  updateDeck();
+}
 function setPCard1() {
   const { cardImg, cardValue } = getRandCard();
   pCard1.setAttribute("src", cardImg);
@@ -941,6 +999,12 @@ function setPCard3() {
 function setPCard4() {
   const { cardImg, cardValue } = getRandCard();
   pCard4.setAttribute("src", cardImg);
+  playerSum += cardValue;
+  updateDeck();
+}
+function setPCard5() {
+  const { cardImg, cardValue } = getRandCard();
+  pCard5.setAttribute("src", cardImg);
   playerSum += cardValue;
   updateDeck();
 }

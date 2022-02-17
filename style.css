@@ -110,9 +110,15 @@ body {
   color: #fff;
   padding: 0 10px;
   transition: all 300ms ease-in-out;
+  z-index: 9;
 }
 .header-alt {
-  background-color: rgb(45, 45, 45);
+  background-color: #5571aaa5;
+
+  color: #fff;
+}
+.main-header.header-alt button {
+  background-color: #5571aab6;
 }
 .main-header .page-title {
   font-size: 1.1rem;
@@ -264,6 +270,7 @@ main {
   background-color: rgba(255, 255, 255, 0.6);
   padding: 0 5px;
   border-bottom-left-radius: 5px;
+  z-index: 2;
 }
 /* Default Page Sections */
 /* About */
@@ -360,12 +367,23 @@ section.contact .section-img {
   text-align: center;
   padding: 1rem;
   padding-bottom: 0;
+  color: white;
+}
+.contact video {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  object-position: center;
+  object-fit: cover;
+  z-index: -1;
 }
 .contact-form {
   margin: 1rem;
   padding: 1rem;
   border-radius: 10px;
-  background-color: rgb(210, 210, 210);
+  background-color: #7b1d0d;
 }
 .input-container {
   padding: 5px;
@@ -403,19 +421,19 @@ section.projects .section-img {
 }
 .projects-header {
   padding: 1rem;
-  width: max-content;
+  width: 100%;
   margin: 0 auto;
+  background-color: #559daa;
 }
 .projects-container {
   display: flex;
   flex-direction: column;
   row-gap: 4rem;
-  padding: 1rem 8rem;
+  padding: 1rem;
   margin-bottom: 100px;
 }
 .projects-card {
-  background-color: rgb(208, 208, 208);
-  padding-bottom: 1rem;
+  background-color: rgb(180, 201, 186);
   text-align: center;
   border-radius: 5px;
   display: flex;
@@ -423,15 +441,53 @@ section.projects .section-img {
   align-items: center;
   justify-content: center;
 }
-.projects-card h4 {
+.card-title {
   padding: 1rem;
 }
-.projects-card img {
-  height: 300px;
+.card-info {
+  position: relative;
+  overflow: hidden;
 }
-.projects-card button {
-  margin-top: 1rem;
-  padding: 5px 8px;
+.card-info img {
+  width: 100%;
+}
+.card-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  background-color: rgba(242, 242, 242, 0.9);
+  transition: transform 1s ease-in-out;
+  padding: 1rem;
+  overflow-y: scroll;
+  z-index: 1;
+}
+.card-details p {
+  line-height: 1.8;
+}
+.card-details h5 {
+  padding: 1rem 1rem 0;
+}
+.card-details li {
+  padding: 5px 3rem;
+  list-style: disc;
+  list-style-position: inside;
+}
+
+.card-btns {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.card-btns button {
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  margin: 0 5px;
 }
 /* Skills */
 section.skills .section-img {
@@ -449,12 +505,6 @@ section.skills .section-img {
 .section-skills section:nth-of-type(2n-1) {
   background-color: rgb(189, 189, 189);
 }
-.section-skills ul {
-  margin-left: 2rem;
-}
-.section-skills li {
-  list-style: disc;
-}
 .section-skills h3 {
   border-bottom: 2px solid black;
   padding: 5px;
@@ -464,7 +514,42 @@ section.skills .section-img {
 .section-skills {
   padding-bottom: 5rem;
 }
-
+.skill {
+  background-color: #559daa;
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  position: relative;
+}
+.skill .fa-caret-up {
+  display: none;
+}
+.skill.active .fa-caret-up {
+  display: block;
+}
+.skill.active .fa-caret-down {
+  display: none;
+}
+.skill-info {
+  border-radius: inherit;
+  height: 0;
+  overflow: hidden;
+  transition: height 1s ease-in-out;
+}
+.skill.active .skill-info {
+  height: 100px;
+  overflow-y: scroll;
+}
+.hard-skills .skill {
+  background-color: #5572aa;
+}
+.new-skills .skill {
+  background-color: #55aa8d;
+}
 /* Photos */
 section.photos .section-img {
   background: no-repeat center/cover
@@ -489,27 +574,30 @@ section.music .section-img {
   background: no-repeat center/cover
     url(https://images.pexels.com/photos/1389429/pexels-photo-1389429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
 }
-.section-music {
-  padding-bottom: 500px;
+.music .section-music {
+  background-color: #55aa8d;
 }
 .music-header {
   padding: 1rem;
   text-align: center;
+  color: white;
 }
-.music-header p {
-  color: rgb(91, 91, 91);
+.music-header div p {
+  text-align: left;
+  padding: 1rem;
+  line-height: 1.6;
 }
 .music-header a {
   color: rgb(188, 60, 31);
 }
 .music-player {
-  margin: 0 10px;
+  margin: 0 10px 100px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(234, 217, 194);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
 }
 .music-player h3 {
@@ -538,9 +626,11 @@ section.music .section-img {
   height: 5px;
   width: 80%;
   border-radius: 10px;
+  border: 1px solid rgb(86, 86, 86);
+  cursor: pointer;
 }
 .progress {
-  background-color: black;
+  background-color: rgb(0, 136, 255);
   height: 100%;
   width: 0%;
   border-radius: 10px;
@@ -816,18 +906,39 @@ section.settings .section-img {
   margin: 0 auto;
 }
 .blackjack-game-container {
+  width: 100%;
   background-color: rgb(23, 145, 23);
-  padding: 5px;
-  margin: 0 10px;
-  border-radius: 2px;
+  padding: 50px 5px;
   text-align: center;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.blackjack-game-container .start {
+  margin-bottom: 20px;
+  padding: 10px 30px;
+  outline: none;
+  border: 1px solid blue;
+  color: blue;
+  border-radius: 2px;
 }
 .blackjack-game-container .card {
   width: 45px;
 }
-.blackjack-game-container button {
-  padding: 10px;
+.btn-container {
+  margin-top: 20px;
+}
+.btn-container button {
+  width: 80px;
+  padding: 10px 20px;
+}
+.btn-container .hit {
+  color: red;
+}
+.btn-container .stand {
+  color: purple;
 }
 .player-hand,
 .dealer-hand {
@@ -874,8 +985,7 @@ section.settings .section-img {
   font-size: 2rem;
   color: rgb(252, 223, 0);
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 2px 10px;
-  border-radius: 10px;
+  padding: 5px 10px;
 }
 /* News App */
 .news-app .section-img {
@@ -1245,7 +1355,10 @@ section.settings .section-img {
       "c c";
   }
   .personal div:first-of-type {
-    padding-left: 2rem;
+    padding: 1rem 2rem;
+    margin-left: 10px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 2px;
   }
   .personal div:last-of-type {
     grid-area: c;
@@ -1254,6 +1367,9 @@ section.settings .section-img {
   .mission-statement,
   .code-of-ethics {
     margin: 4rem 20%;
+  }
+  .professional h4 {
+    padding: 1rem 10% 0;
   }
   .professional p {
     padding: 1rem 10%;
